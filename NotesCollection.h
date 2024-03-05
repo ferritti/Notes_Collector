@@ -16,7 +16,7 @@
 
 class NotesCollection : public Subject{
 public:
-    NotesCollection(int noteNum, std::string  n, bool i) : noteNum(noteNum), name(std::move(n)), importantCollection(i){}
+    explicit NotesCollection(std::string  n, bool i = false) : noteNum(0), name(std::move(n)), importantCollection(i){}
 
     void addObserver(Observer *o) override;
     void removeObserver(Observer *o) override;
