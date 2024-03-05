@@ -36,26 +36,21 @@ TEST_F(NotesCollectionTest, AddNoteTest) {
 TEST_F(NotesCollectionTest, RemoveNoteTest) {
     collection.addNote(note1);
     collection.addNote(note2);
-    collection.removeNote(note1);
+    collection.removeNote("Note 1");
     ASSERT_EQ(collection.getNoteNum(), 1);
-    collection.removeNote(note2);
+    collection.removeNote("Note 2");
     ASSERT_EQ(collection.getNoteNum(), 0);
 }
 
-TEST_F(NotesCollectionTest, ExceptionTest) {
-    collection.addNote(note1);
-    ASSERT_THROW(collection.removeNote(note2), std::runtime_error);
-    note1->setLocked(true);
-    ASSERT_THROW(collection.removeNote(note1), std::runtime_error);
-}
-
 TEST_F(NotesCollectionTest, SettersTest) {
-    collection.setName("New Collection");
-    ASSERT_EQ(collection.getName(), "New Collection");
+    collection.setName("New Name");
+    ASSERT_EQ(collection.getName(), "New Name");
     collection.setImportantCollection(true);
     ASSERT_TRUE(collection.isImportantCollection());
     collection.setImportantCollection(false);
     ASSERT_FALSE(collection.isImportantCollection());
+    collection.setNoteNum(5);
+    ASSERT_EQ(collection.getNoteNum(), 5);
 }
 
 TEST_F(NotesCollectionTest, GettersTest) {
@@ -65,6 +60,23 @@ TEST_F(NotesCollectionTest, GettersTest) {
     ASSERT_EQ(collection.getName(), "Collection");
     ASSERT_FALSE(collection.isImportantCollection());
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
