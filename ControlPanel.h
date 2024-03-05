@@ -13,7 +13,7 @@
 
 class ControlPanel : public Observer{
 public:
-    ControlPanel(const std::list<Subject*>& c);
+    explicit ControlPanel(const std::list<Subject*>& c);
 
     void addCollection(Subject* collection);
     void removeCollection(Subject* collection);
