@@ -13,13 +13,16 @@
 
 class ControlPanel : public Observer{
 public:
-    ControlPanel();
+    ControlPanel(const std::list<Subject*>& c);
 
-    ~ControlPanel() override;
+    void addCollection(Subject* collection);
+    void removeCollection(Subject* collection);
 
     void update() override;
 
-    int getCollectionNum() const;
+    int getCollectionNum() const {
+        return collectionNum;
+    }
 
 
 private:
