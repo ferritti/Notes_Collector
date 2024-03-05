@@ -34,23 +34,28 @@ void NotesCollection::setName(const std::string &n) {
 }
 
 void NotesCollection::addNote(const std::shared_ptr<Note> &note) {
+    for (const auto &n : notes) {
+        if (n->getTitle() == note->getTitle())
+            throw std::runtime_error("Note already exists");
+    }
     notes.push_back(note);
     noteNum++;
     notify();
 }
 
-void NotesCollection::removeNote(const std::shared_ptr<Note> &note) {
+void NotesCollection::removeNote(const std::string &title) {
     for (const auto &n : notes) {
-        if (n->getTitle() == note->getTitle()) {
-            if (note->isLocked())
+        if (n->getTitle() == title) {
+            if (n->isLocked())
                 throw std::runtime_error("Note is blocked");
             else {
-                notes.remove(note);
+                notes.remove(n);
                 noteNum--;
                 notify();
+                break;
             }
         }
-        else
+        if (n == notes.back())
             throw std::runtime_error("Note not found");
     }
 }

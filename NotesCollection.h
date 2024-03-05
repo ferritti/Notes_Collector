@@ -29,7 +29,7 @@ public:
     void setName(const std::string &n);
 
     void addNote(const std::shared_ptr<Note>& note);
-    void removeNote(const std::shared_ptr<Note>& note);
+    void removeNote(const std::string &title);
 
     bool isImportantCollection() const {
         return importantCollection;
