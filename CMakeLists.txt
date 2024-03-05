@@ -3,4 +3,9 @@ project(Notes_Manager)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Notes_Manager main.cpp Observer.h Subject.h Note.h Note.h Note.cpp NotesCollection.h NotesCollection.cpp ControlPanel.h ControlPanel.cpp)
+add_subdirectory(Test)
+
+set(SOURCE_FILES Observer.h Subject.h Note.cpp Note.h NotesCollection.h NotesCollection.cpp ControlPanel.h ControlPanel.cpp)
+add_executable(Notes_Manager main.cpp)
+add_library(core ${SOURCE_FILES})
+target_link_libraries(Notes_Manager core)
