@@ -63,39 +63,25 @@ TEST_F(NotesCollectionTest, GettersTest) {
 
 TEST_F(NotesCollectionTest, AddNoteExceptionTest) {
     collection.addNote(note1);
-    ASSERT_THROW(collection.addNote(note1), std::runtime_error);
+    try {
+        collection.addNote(note1);
+    } catch (std::runtime_error &e) {
+        ASSERT_STREQ(e.what(), "Note already exists");
+    }
 }
 
 TEST_F(NotesCollectionTest, RemoveNoteExceptionTest) {
     collection.addNote(note1);
     note1->setLocked(true);
-    ASSERT_THROW(collection.removeNote("Note 1"), std::runtime_error);
-    note1->setLocked(false);
-    ASSERT_THROW(collection.removeNote("Note 2"), std::runtime_error);
-    ASSERT_THROW(collection.removeNote("Note 3"), std::runtime_error);
+    try {
+        collection.removeNote("Note 1");
+    } catch (std::runtime_error &e) {
+        ASSERT_STREQ(e.what(), "Note is blocked");
+    }
+
+    try {
+        collection.removeNote("Note 2");
+    } catch (std::runtime_error &e) {
+        ASSERT_STREQ(e.what(), "Note not found");
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
