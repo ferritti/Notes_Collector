@@ -17,17 +17,13 @@ public:
         return title;
     }
 
-    void setTitle(const std::string &ti) {
-        title = ti;
-    }
+    void setTitle(const std::string &ti);
 
     const std::string &getText() const {
         return text;
     }
 
-    void setText(const std::string &te) {
-        text = te;
-    }
+    void setText(const std::string &te);
 
     bool isLocked() const {
         return locked;
