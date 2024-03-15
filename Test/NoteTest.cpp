@@ -36,3 +36,17 @@ TEST(NoteTest, LockedTest) {
     ASSERT_THROW(n.setText("new text"), std::runtime_error);
 }
 
+TEST(NoteTest, ExceptionNoteTest) {
+    Note n("title", "text", true);
+    try {
+        n.setTitle("new title");
+    } catch (std::runtime_error &e) {
+        ASSERT_STREQ(e.what(), "Note is blocked");
+    }
+
+    try {
+        n.setText("new text");
+    } catch (std::runtime_error &e) {
+        ASSERT_STREQ(e.what(), "Note is blocked");
+    }
+}
