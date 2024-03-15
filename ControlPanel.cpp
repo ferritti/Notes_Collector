@@ -43,9 +43,9 @@ void ControlPanel::update() {
             auto collection = dynamic_cast<NotesCollection*>(c);
             if(collection){
                 if(collection->getNoteNum() == 1)
-                    std::cout<<"Collection"<<collection->getName()<< "has 1 note";
+                    std::cout<<"Collection "<<collection->getName()<< " has 1 note";
                 else
-                    std::cout<<"Collection"<<collection->getName()<< "has" << collection->getNoteNum() << "notes";
+                    std::cout<<"Collection "<<collection->getName()<< " has " << collection->getNoteNum() << " notes";
             }
             else
                 throw std::runtime_error("The collection is not a NotesCollection");
