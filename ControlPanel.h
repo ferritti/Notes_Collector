@@ -16,7 +16,7 @@ public:
     explicit ControlPanel(const std::list<Subject*>& c);
 
     void addCollection(Subject* collection);
-    void removeCollection(Subject* collection);
+    void removeCollection(Subject* c);
 
     void update() override;
 

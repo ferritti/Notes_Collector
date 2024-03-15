@@ -26,10 +26,11 @@ void ControlPanel::addCollection(Subject* c) {
         throw std::runtime_error("The collection is not a NotesCollection");
 }
 
-void ControlPanel::removeCollection(Subject* collection) {
+void ControlPanel::removeCollection(Subject* c) {
+    auto collection = dynamic_cast<NotesCollection*>(c);
     if (collection){
         collections.remove(collection);
-        collection->removeObserver(this);
+        c->removeObserver(this);
         collectionNum--;
     }
     else
