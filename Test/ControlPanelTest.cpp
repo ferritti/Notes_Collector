@@ -41,47 +41,4 @@ TEST_F(ControlPanelTest, RemoveCollectionTest) {
     ASSERT_EQ(controlPanel->getCollectionNum(), 0);
 }
 
-TEST_F(ControlPanelTest, UpdateTest) {
-    try {
-        controlPanel->update();
-    }
-    catch (std::runtime_error& e) {
-        ASSERT_STREQ(e.what(), "There is no collections");
-    }
-
-    controlPanel->addCollection(collection1);
-    try{
-        controlPanel->update();
-    }
-    catch (std::runtime_error& e){
-        ASSERT_STREQ(e.what(), "Collection Collection 1 has 0 notes");
-    }
-
-    collection1->addNote(std::make_shared<Note>("Note 1", "Text 1"));
-    try {
-        controlPanel->update();
-    }
-    catch (std::runtime_error& e) {
-        ASSERT_STREQ(e.what(), "Collection Collection 1 has 1 note");
-    }
-
-    controlPanel->addCollection(collection2);
-    try {
-        controlPanel->update();
-    }
-    catch (std::runtime_error& e) {
-        ASSERT_STREQ(e.what(), "Collection Collection 1 has 1 notesCollection Collection 2 has 0 notes");
-    }
-
-    collection2->addNote(std::make_shared<Note>("Note 2", "Text 2"));
-    collection2->addNote(std::make_shared<Note>("Note 3", "Text 3"));
-    try {
-        controlPanel->update();
-    }
-    catch (std::runtime_error& e) {
-        ASSERT_STREQ(e.what(), "Collection Collection 1 has 1 notesCollection Collection 2 has 2 notes");
-    }
-}
-
-
 

@@ -7,11 +7,8 @@
 ControlPanel::ControlPanel(const std::list<Subject*>& c) : collections(c) {
     for (const auto &c : collections) {
         auto collection = dynamic_cast<NotesCollection *>(c);
-        if (collection) {
+        if (collection)
             collection->addObserver(this);
-        }
-        else
-            throw std::runtime_error("The collection is not a NotesCollection");
     }
 }
 
@@ -21,8 +18,6 @@ void ControlPanel::addCollection(Subject* c) {
         collections.push_back(collection);
         collection->addObserver(this);
     }
-    else
-        throw std::runtime_error("The collection is not a NotesCollection");
 }
 
 void ControlPanel::removeCollection(Subject* c) {
@@ -31,16 +26,12 @@ void ControlPanel::removeCollection(Subject* c) {
         collections.remove(collection);
         c->removeObserver(this);
     }
-    else
-        throw std::runtime_error("The collection is not a NotesCollection");
 }
 
 void ControlPanel::update() {
     for (const auto &c: collections) {
         auto collection = dynamic_cast<NotesCollection *>(c);
-        if (collection) {
+        if (collection)
             std::cout << "Collection " << collection->getName() << " has " << collection->getNoteNum() << " notes";
-        } else
-            throw std::runtime_error("The collection is not a NotesCollection");
     }
 }
