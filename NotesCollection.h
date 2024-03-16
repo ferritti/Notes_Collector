@@ -16,17 +16,18 @@
 
 class NotesCollection : public Subject{
 public:
-    explicit NotesCollection(std::string  n, bool i = false) : noteNum(0), name(std::move(n)), importantCollection(i){}
+    explicit NotesCollection(std::string  n, bool i = false) : name(std::move(n)), importantCollection(i){}
 
     void addObserver(Observer *o) override;
     void removeObserver(Observer *o) override;
     void notify() override;
 
-    int getNoteNum() const;
-    void setNoteNum(int num);
-
     const std::string &getName() const;
     void setName(const std::string &n);
+
+    int getNoteNum() const{
+        return notes.size();
+    }
 
     void addNote(const std::shared_ptr<Note>& note);
     void removeNote(const std::string &title);
@@ -40,7 +41,6 @@ public:
     }
 
 private:
-    int noteNum;
     std::string name;
     std::list <std::shared_ptr<Note>> notes;
     std::list <Observer*> observers;

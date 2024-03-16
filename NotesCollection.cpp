@@ -17,14 +17,6 @@ void NotesCollection::notify() {
         o->update();
 }
 
-int NotesCollection::getNoteNum() const {
-    return noteNum;
-}
-
-void NotesCollection::setNoteNum(int num) {
-    noteNum = num;
-}
-
 const std::string &NotesCollection::getName() const {
     return name;
 }
@@ -39,7 +31,6 @@ void NotesCollection::addNote(const std::shared_ptr<Note> &note) {
             throw std::runtime_error("Note already exists");
     }
     notes.push_back(note);
-    noteNum++;
     notify();
 }
 
@@ -50,7 +41,6 @@ void NotesCollection::removeNote(const std::string &title) {
                 throw std::runtime_error("Note is blocked");
             else {
                 notes.remove(n);
-                noteNum--;
                 notify();
                 break;
             }
@@ -59,4 +49,5 @@ void NotesCollection::removeNote(const std::string &title) {
             throw std::runtime_error("Note not found");
     }
 }
+
 
