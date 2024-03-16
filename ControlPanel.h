@@ -21,13 +21,12 @@ public:
     void update() override;
 
     int getCollectionNum() const {
-        return collectionNum;
+        return collections.size();
     }
 
 
 private:
     std::list<Subject*> collections;
-    int collectionNum;
 };
 
 
