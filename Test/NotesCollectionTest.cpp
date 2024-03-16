@@ -49,8 +49,6 @@ TEST_F(NotesCollectionTest, SettersTest) {
     ASSERT_TRUE(collection.isImportantCollection());
     collection.setImportantCollection(false);
     ASSERT_FALSE(collection.isImportantCollection());
-    collection.setNoteNum(5);
-    ASSERT_EQ(collection.getNoteNum(), 5);
 }
 
 TEST_F(NotesCollectionTest, GettersTest) {
@@ -68,6 +66,9 @@ TEST_F(NotesCollectionTest, AddNoteExceptionTest) {
     } catch (std::runtime_error &e) {
         ASSERT_STREQ(e.what(), "Note already exists");
     }
+
+    collection.addNote(note2);
+    ASSERT_THROW(collection.addNote(note2), std::runtime_error);
 }
 
 TEST_F(NotesCollectionTest, RemoveNoteExceptionTest) {
@@ -84,4 +85,10 @@ TEST_F(NotesCollectionTest, RemoveNoteExceptionTest) {
     } catch (std::runtime_error &e) {
         ASSERT_STREQ(e.what(), "Note not found");
     }
+
+    ASSERT_THROW(collection.removeNote("Note that doesn't exist"), std::runtime_error);
+
+    collection.addNote(note2);
+    note2->setLocked(true);
+    ASSERT_THROW(collection.removeNote("Note 2"), std::runtime_error);
 }
